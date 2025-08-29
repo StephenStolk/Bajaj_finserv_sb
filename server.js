@@ -20,7 +20,7 @@ function processData(data) {
 
       for (let item of data) {
     if (!isNaN(item)) {
-        
+
       let num = parseInt(item, 10);
       if (num % 2 === 0) {
         even_numbers.push(item);
@@ -38,4 +38,43 @@ function processData(data) {
       special_characters.push(item);
     }
   }
+
+    let allChars = alphabets.join("").split("").reverse();
+
+  let concat_string = allChars
+    .map((ch, idx) =>
+      idx % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase()
+    )
+    .join("");
+
+
+      return {
+    is_success: true,
+    ...user,
+    odd_numbers,
+    even_numbers,
+    alphabets,
+    special_characters,
+    
+    sum: sum.toString(),
+    concat_string
+  };
 }
+
+
+app.post("/process", (req, res) => {
+  const { data } = req.body;
+
+  if (!data || !Array.isArray(data)) {
+    return res.status(400).json({ is_success: false, message: "Invalid input" });
+  }
+
+  const result = processData(data);
+  res.json(result);
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+
+  console.log(`Server running on http://localhost:${PORT}`);
+});
