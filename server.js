@@ -1,8 +1,12 @@
 const express = require('express');
 const bodyparser = require("body-parser");
+const cors = require("cors");
+
 
 const app = express();
 app.use(bodyparser.json());
+
+app.use(cors()); 
 
 
 const user = {
@@ -15,6 +19,7 @@ function processData(data) {
     let even_numbers = [];
   let odd_numbers = [];
   let alphabets = [];
+
   let special_characters = [];
   let sum = 0;
 
@@ -55,7 +60,7 @@ function processData(data) {
     even_numbers,
     alphabets,
     special_characters,
-    
+
     sum: sum.toString(),
     concat_string
   };
@@ -76,5 +81,5 @@ app.post("/process", (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
 
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${3000}`);
 });
