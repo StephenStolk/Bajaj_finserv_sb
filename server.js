@@ -8,6 +8,13 @@ app.use(bodyparser.json());
 
 app.use(cors()); 
 
+app.get("/", (req, res) => {
+  res.send("Backend is running. Use /bfhl");
+});
+
+app.get("/bfhl", (req, res) => {
+  res.json({ operation_code: 1, message: "Backend is running! Use POST /bfhl" });
+});
 
 const user = {
     user_id: "shikhar_burman_123456",
