@@ -67,7 +67,7 @@ function processData(data) {
 }
 
 
-app.post("/process", (req, res) => {
+app.post("/bfhl", (req, res) => {
   const { data } = req.body;
 
   if (!data || !Array.isArray(data)) {
